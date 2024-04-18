@@ -1,0 +1,42 @@
+<header>
+  <div class="logo">Nhóm 7</div>
+  <div id="{{loguser}}" class="show">
+
+  </div>
+
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const url = window.location.href;
+    const logo = document.querySelector(".logo");
+    const show = document.querySelector(".show");
+
+    if (url.indexOf('auth') === -1) {
+      if (url.indexOf('logged') === -1) {
+        show.innerHTML = `<div class="login">
+      <a href="/login" style="border-right: 3px">Đăng nhập</a>
+      <a href="/register" style="border-left: 3px">Đăng ký</a>
+    </div>`;
+      } else if (url.indexOf('logged') !== -1) {
+        show.innerHTML = `<div class="dropdown ml-auto">
+      <button style="background-color: transparent;" class="btn btn-secondary dropdown-toggle" type="button"
+        data-bs-toggle="dropdown" aria-expanded="false">{{loguser}}</button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="/">Đăng xuất</a></li>
+      </ul>
+    </div>`;
+        const btn = document.querySelector(".btn");
+
+      }
+    }
+
+    logo.addEventListener("click", function () {
+      if (url === "http://localhost:3000/loggedwithgoogle") { return window.location.href = url }
+      else if (url.indexOf('logged') === -1) { return window.location.href = "http://localhost:3000/" }
+      else { return window.location.href = "/logged/" + btn.innerHTML; }
+    });
+
+
+  })
+</script>

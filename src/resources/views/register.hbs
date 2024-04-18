@@ -1,0 +1,133 @@
+<div class="register-container" id="register">
+  <h2>Đăng ký</h2>
+  <div class="form-group">
+    <label for="username">Tên đăng nhập:</label>
+    <input type="text" id="username" name="username" placeholder="Nhập tên đăng nhập" value="{{importuser.username}}">
+    <p id="u{{wnu}}" style="color: red; display: none;">Tên đăng nhập đã tồn tại!!!!</p>
+    <p id="wnu" style="color: red; display: none;">Tên đăng nhập không được trống!!!</p>
+  </div>
+  <div class="form-group">
+    <label for="password">Mật khẩu:</label>
+    <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" value="{{importuser.password}}">
+    <p id="wnp" style="color: red; display: none;">Mật khẩu không được trống!!!</p>
+  </div>
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Nhập email" value="{{importuser.email}}">
+    <p id="e{{wne}}" style="color: red;  display: none;">Email đã tồn tại!!!!</p>
+    <p id="wre" style="color: red;  display: none;">Email không hợp lệ!!!!</p>
+    <p id="wne" style="color: red; display: none;">Email không được trống!!!</p>
+  </div>
+  <button class="button-log" id="btnRegister" type="submit">Đăng ký</button>
+  <div class="or">Hoặc <br>
+    <a style="color: red;" type="button" class="google-btn">Continue with Google</a>
+  </div>
+
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const wnu = document.querySelector("#wnu");
+    const wnp = document.querySelector("#wnp");
+    const wne = document.querySelector("#wne");
+    const wre = document.querySelector("#wre");
+    const google = document.querySelector(".google-btn");
+    const uexist = document.querySelector("#uexist");
+    const eexist = document.querySelector("#eexist");
+    const username = document.querySelector("#username");
+    const password = document.querySelector("#password");
+    const email = document.querySelector("#email");
+    const btnRegister = document.querySelector("#btnRegister");
+    const register = document.querySelector("#register");
+
+    if (register.innerHTML.includes('<form id="formRegister" action="http://localhost:3000/register" method="POST">')) {
+      register.innerHTML = register.innerHTML.replace('<form id="formRegister" action="http://localhost:3000/register" method="POST">', "");
+    }
+
+    if (uexist !== null) { uexist.style.display = 'block'; }
+    else if (eexist !== null) { eexist.style.display = 'block'; }
+
+    function isValidEmail(email) {
+    // Biểu thức chính quy để kiểm tra định dạng email
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    // Kiểm tra email với biểu thức chính quy
+    return emailPattern.test(email);
+  }
+
+    btnRegister.addEventListener('click', function () {
+      if (password.value !== '') {
+        if (uexist !== null) { uexist.style.display = 'none'; uexist.id = "u"; }
+        else if (eexist !== null) { eexist.style.display = 'none'; eexist.id = "e"; }
+      }
+      const u = document.querySelector("#u");
+      const e = document.querySelector("#e");
+      if (username.value === '' && password.value === '' && email.value === '') {
+        wnu.style.display = 'block';
+        wnp.style.display = 'block';
+        wne.style.display = 'block';
+        u.style.display = 'none';
+        e.style.display = 'none';
+        wre.style.display = 'none';
+      } else if (password.value === '' && email.value === '') {
+        wnu.style.display = 'none';
+        wnp.style.display = 'block';
+        wne.style.display = 'block';
+        e.style.display = 'none';
+        wre.style.display = 'none';
+      } else if (username.value === '' && email.value === '') {
+        wnu.style.display = 'block';
+        wnp.style.display = 'none';
+        wne.style.display = 'block';
+        u.style.display = 'none';
+        e.style.display = 'none';
+        wre.style.display = 'none';
+      } else if (username.value === '' && password.value === '') {
+        wnu.style.display = 'block';
+        wnp.style.display = 'block';
+        wne.style.display = 'none';
+        u.style.display = 'none';
+        if(!isValidEmail(email.value)) wre.style.display = 'block';
+      } else if (username.value === '') {
+        wnu.style.display = 'block';
+        wnp.style.display = 'none';
+        wne.style.display = 'none';
+        u.style.display = 'none';
+        wre.style.display = 'none';
+      } else if (password.value === '') {
+        wnu.style.display = 'none';
+        wnp.style.display = 'block';
+        wne.style.display = 'none';
+        wre.style.display = 'none';
+      } else if (email.value === '') {
+        wnu.style.display = 'none';
+        wnp.style.display = 'none';
+        wne.style.display = 'block';
+        e.style.display = 'none';
+        wre.style.display = 'none';
+      } else {
+        wnu.style.display = 'none';
+        wnp.style.display = 'none';
+        wne.style.display = 'none';
+        if(!isValidEmail(email.value)) return wre.style.display = 'block';
+        const uv = username.value;
+        const pv = password.value;
+        const ev = email.value;
+        register.innerHTML = '<form id="formRegister" action="http://localhost:3000/register" method="POST">' + register.innerHTML
+        const formRegister = document.querySelector("#formRegister");
+        const username1 = document.querySelector("#username");
+        const password1 = document.querySelector("#password");
+        const email1 = document.querySelector("#email");
+        username1.value = uv;
+        password1.value = pv;
+        email1.value = ev;
+        formRegister.submit();
+      }
+    });
+
+    google.addEventListener('click', function () {
+      window.location.href = 'http://localhost:3000/auth/google'
+    });
+
+  })
+</script>

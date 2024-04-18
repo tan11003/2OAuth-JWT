@@ -1,0 +1,241 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin-top: 66px;
+  background-color: #18191a;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #242526;
+  padding: 10px;
+  color: #b0b3b8;
+  border-bottom: 1px solid #8b8d91;
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  z-index: 9999; /* Giá trị cao hơn */
+}
+
+.nhom7{
+  text-decoration: unset;
+  color: #b0b3b8;
+}
+
+.nhom7:hover {
+  text-decoration: unset;
+  opacity: 1;
+}
+
+a {
+  text-decoration: unset;
+  color: #b0b3b8;
+}
+
+a:hover {
+  text-decoration: unset;
+  opacity: 0.8;
+}
+
+.user-list-container {
+  max-width: 1200px;
+  margin: 0 auto 0;
+  /* transform: scale(1.5); */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  font-size: 25px;
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  color: white;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  color: #242526;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.button-group {
+  margin-top: 20px;
+}
+
+.button-r {
+  padding: 10px 20px;
+  margin: 0 10px;
+  color: white;
+}
+
+.button-r:hover{
+  opacity: 0.5;
+}
+
+.delete-button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  opacity: 0.7;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.logo:hover{
+  cursor: pointer;
+}
+
+.login {
+  font-size: 20px;
+}
+
+.login-container {
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  transform-origin: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.6);
+}
+/* ______________________ */
+
+h2 {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.button-log {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #242526;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.button-log:hover {
+  background-color: #18191a;
+}
+
+.register-container {
+  width: 400px;
+  margin: 30px 0 0 0;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  transform-origin: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.4);
+}
+
+.register-container h2 {
+  text-align: center;
+}
+
+.register-container .form-group {
+  margin-bottom: 15px;
+}
+
+.register-container label {
+  display: block;
+  font-weight: bold;
+}
+
+.register-container input[type="text"],
+.register-container input[type="password"],
+.register-container input[type="email"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.register-container button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #242526;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.register-container button:hover {
+  background-color: #18191a;
+}
+
+.google-btn:hover{
+  opacity: 0.7;
+}
+
+.or {
+  text-align: center;
+  margin: 10px 0;
+  font-weight: bold;
+}

@@ -1,0 +1,128 @@
+<body class="body mt-1">
+  {{!-- <h2 style="color: #5dd508;">Xóa thành công!!!</h2> --}}
+
+  <div class="user-list-container">
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center; width: 25%;">Username</th>
+          <th style="text-align: center; width: 45%;">Email</th>
+          <th style="text-align: center; width: 15%;">Role</th>
+          <th style="text-align: center; width: 15%;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each user}}
+        <tr class="user">
+          <td class="username" style="text-align: left;">{{this.username}}</td>
+          <td style="text-align: left;">{{this.email}}</td>
+          <td>{{this.isAdmin}}</td>
+          <td><button id="{{this._id}}" class="delete-button">Xóa</button></td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    <h2 id="wn" style="color: red;">{{warning}}</h2>
+  </div>
+
+  <div style="display: {{warning}};" id="confirmRefresh" class="popup">
+    <div class="popup-content">
+      <h2>Thông báo</h2>
+      <h5 style="color: red;">Token của bạn đã hết hạn!!!</h5>
+      <div class="button-group">
+        <button style="background-color: #5dd508;" class="button-r" id="confirmRefresh">Tạo token mới</button>
+        <button style="background-color: crimson;" class="button-r" id="confirmLogout">Đăng xuất</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="confirmDelete" class="popup">
+    <div class="popup-content">
+      <h2>Thông báo</h2>
+      <h5 style="color: red;">Bạn chắc chắn muốn xóa?</h5>
+      <div class="button-group">
+        <button style="background-color: crimson;" class="button-r" id="confirmYesButton">Có</button>
+        <button style="background-color: #6c757d;" class="button-r" id="confirmNoButton">Hủy</button>
+      </div>
+    </div>
+  </div>
+
+  <form id="delForm" method="POST"></form>
+</body>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    const url = window.location.href;
+    const show = document.querySelector(".show");
+    const btnDels = document.querySelectorAll(".delete-button");
+    const usernames = document.querySelectorAll(".username");
+    const delForm = document.getElementById("delForm");
+    const confirmRefresh = document.getElementById("confirmRefresh");
+    const confirmLogout = document.getElementById("confirmLogout");
+    const confirmYesButton = document.getElementById("confirmYesButton");
+    const confirmNoButton = document.getElementById("confirmNoButton");
+    const wn = document.getElementById("wn");
+    const users = document.querySelectorAll(".user");
+    const confirmDelete = document.getElementById("confirmDelete");
+
+    if (wn.innerHTML === "flex") wn.innerHTML = "";
+
+    users.forEach(function (user, index) {
+      if (user.getElementsByTagName('td')[2].innerHTML === "true") user.getElementsByTagName('td')[2].innerHTML = "Admin";
+      else user.getElementsByTagName('td')[2].innerHTML = "User";
+    })
+
+    confirmRefresh.addEventListener('click', function () { return window.location.href = window.location.href + "/refresh"; })
+    confirmLogout.addEventListener('click', function () { return window.location.href = "http://localhost:3000/"; })
+
+    confirmNoButton.addEventListener('click', function () { return confirmDelete.style.display = 'none'; })
+
+
+    if (url.indexOf('delfail1') === -1)
+      if (url.indexOf('delfail') !== -1) {
+        let countdown = 1;
+        const countdownInterval = setInterval(function () {
+          countdown--;
+          if (countdown === 0) {
+            clearInterval(countdownInterval);
+            if (url.indexOf('logged') !== -1) {
+              if (url.indexOf('google') !== -1) { return window.location.href = 'http://localhost:3000/loggedwithgoogle'; }
+              else { return window.location.href = "http://localhost:3000/logged/" + show.id; }
+            } else { window.location.href = "http://localhost:3000/"; }
+          }
+        }, 1000);
+      }
+
+    usernames.forEach(function (username) {
+      if (username.innerHTML === show.id) {
+        username.style.color = 'red';
+        return;
+      }
+    })
+
+    btnDels.forEach(function (btnDel, index) {
+      btnDel.addEventListener('click', function () {
+        confirmDelete.style.display = 'flex';
+        confirmYesButton.addEventListener('click', function () {
+          if (url.indexOf('delfail') === -1) {
+            if (url === "http://localhost:3000/") {
+              return window.location.href = 'http://localhost:3000/delfail';
+            } else if (url === "http://localhost:3000/loggedwithgoogle") {
+              return window.location.href = 'http://localhost:3000/loggedwithgoogle/delfail';
+            } else {
+              delForm.action = "http://localhost:3000/logged/" + show.id + "/" + btnDel.id + "?_method=DELETE";
+              return delForm.submit();
+            }
+          } else {
+            return window.location.href = url;
+          }
+        })
+
+
+      })
+    })
+
+
+  })
+</script>
+</body>

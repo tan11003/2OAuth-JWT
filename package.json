@@ -1,0 +1,43 @@
+{
+    "name": "2oauth-and-jwt",
+    "version": "1.0.0",
+    "description": "",
+    "main": "src/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon src/index.js",
+        "watch": "node-sass --watch src/resources/scss/main.scss src/public/css/main.css"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/NgocnhatBruh/2OAuth-JWT.git"
+    },
+    "keywords": [
+        "nodejs",
+        "jwt"
+    ],
+    "author": "ngocn",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/NgocnhatBruh/2OAuth-JWT/issues"
+    },
+    "homepage": "https://github.com/NgocnhatBruh/2OAuth-JWT#readme",
+    "dependencies": {
+        "axios": "^1.6.7",
+        "bcrypt": "^5.1.1",
+        "cookie-parser": "^1.4.6",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
+        "express": "^4.18.3",
+        "express-handlebars": "^7.1.2",
+        "express-session": "^1.18.0",
+        "jsonwebtoken": "^9.0.2",
+        "method-override": "^3.0.0",
+        "mongoose": "^8.2.0",
+        "mongoose-slug-generator": "^1.0.4",
+        "morgan": "^1.10.0",
+        "nodemon": "^3.1.0",
+        "passport": "^0.7.0",
+        "passport-google-oauth2": "^0.2.0"
+    }
+}

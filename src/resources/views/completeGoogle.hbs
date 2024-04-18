@@ -1,0 +1,17 @@
+<h2 style="color: rgb(97 212 28);">Kết nối thành công!!!</h2>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    // Đặt thời gian ban đầu là 3
+    let countdown = 1;
+
+    // Cập nhật giá trị đếm ngược và chuyển hướng sau khi kết thúc
+    const countdownInterval = setInterval(function() {
+    countdown--;
+    // Kiểm tra nếu đếm ngược đã kết thúc
+    if (countdown === 0) {
+        clearInterval(countdownInterval);
+        window.location.href = "http://localhost:3000/loggedwithgoogle"; // Thay thế bằng URL bạn muốn chuyển hướng đến
+    }
+    }, 1000);
+})
+</script>
